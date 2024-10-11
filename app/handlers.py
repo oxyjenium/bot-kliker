@@ -6,9 +6,6 @@ from aiogram.fsm.context import FSMContext
 
 import app.keyboards as kb
 
-k=0
-flag=True
-
 router=Router()
 
 class stat(StatesGroup):
@@ -18,6 +15,8 @@ class stat(StatesGroup):
 @router.message(CommandStart())
 async def cmd_start(message : Message, state : FSMContext):
     await message.reply(f'Привет. Это бот кликер. Чтобы начать игру нажми клик. После того как закончишь, напиши команду /reg, чтобы сохранить свой результат!',reply_markup=kb.main)
+    k=0
+    flag=True
     data = await state.get_data()
     flag=data.get("flag")
     await state.update_data(flag=True)
